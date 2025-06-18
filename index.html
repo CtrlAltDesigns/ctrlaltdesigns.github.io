@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CtrlAltDesign Studio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+      background-attachment: fixed;
+      background-size: cover;
+      color: #f5f5f5;
+      line-height: 1.6;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle, rgba(0,255,255,0.1) 0%, rgba(0,0,0,0.9) 70%), 
+                  repeating-linear-gradient(45deg, rgba(0,255,255,0.05), rgba(0,255,255,0.05) 1px, transparent 2px, transparent 5px);
+      z-index: -1;
+      pointer-events: none;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #000;
+      z-index: 1000;
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 1px solid #00ffff;
+    }
+    nav a {
+      color: #00ffff;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #33ffff;
+    }
+    header {
+      padding: 6rem 1rem 3rem;
+      text-align: center;
+      border-bottom: 2px solid #444;
+      animation: fadeInDown 1s ease-out;
+    }
+    header img {
+      max-width: 180px;
+      border-radius: 8px;
+      animation: fadeIn 2s ease-in;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-top: 1rem;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #ccc;
+      max-width: 600px;
+      margin: 1rem auto 0;
+    }
+    section {
+      padding: 4rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+      animation: fadeInUp 1s ease-out;
+    }
+    h2 {
+      color: #00ffff;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      border-bottom: 1px solid #444;
+      padding-bottom: 0.5rem;
+      text-shadow: 0 0 5px #00ffff;
+    }
+    ul li {
+      margin-bottom: 0.6rem;
+    }
+    .packages div {
+      background-color: #1b1b1b;
+      margin-bottom: 1.5rem;
+      padding: 1.2rem;
+      border-left: 5px solid #00ffff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,255,255,0.3);
+      transition: transform 0.3s ease;
+    }
+    .packages div:hover {
+      transform: scale(1.03);
+    }
+    .portfolio {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .portfolio a img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,255,255,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .portfolio a img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0,255,255,0.4);
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 1rem;
+      background: #111;
+      color: #fff;
+      border: 1px solid #00ffff;
+      border-radius: 6px;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: #00ffff;
+      outline: none;
+      box-shadow: 0 0 5px #00ffff;
+    }
+    .contact-form button {
+      padding: 1rem;
+      background-color: #00ffff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .contact-form button:hover {
+      background-color: #33ffff;
+      box-shadow: 0 0 10px #00ffff;
+    }
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      background-color: #0a0a0a;
+      color: #888;
+      animation: fadeIn 2s ease-in;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      .packages div {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <header>
+    <img src="images/logo-main.jpeg" alt="CtrlAltDesign Studio Logo">
+    <h1>CtrlAltDesign Studio</h1>
+    <p>Need a logo that truly captures your brand or gaming vibe? I design custom logos made just for you.</p>
+  </header>
+  <section>
+    <h2>What You Get</h2>
+    <ul>
+      <li>🎨 Clean, scalable designs for websites, cards, merch & socials</li>
+      <li>🔥 100% original, crafted from scratch with your goals in mind</li>
+      <li>⚡ Fast, friendly communication</li>
+      <li>📁 Web & print-ready files</li>
+      <li>➕ Extras like social media kits & business card design available</li>
+    </ul>
+  </section>
+  <section class="packages">
+    <h2>Packages</h2>
+    <div>
+      <strong>Starter Logo £50 / $65</strong><br>1 concept, 1 revision, PNG & JPEG
+    </div>
+    <div>
+      <strong>Growth Logo £75 / $95 (Most Popular)</strong><br>2 concepts, 3 revisions, transparent files
+    </div>
+    <div>
+      <strong>Brand Builder £120 / $150</strong><br>3 concepts, all file formats, unlimited revisions & brand guidelines
+    </div>
+  </section>
+  <section id="portfolio">
+    <h2>Portfolio</h2>
+    <div class="portfolio">
+      <a href="images/logo1.jpeg" class="glightbox"><img src="images/logo1.jpeg" alt="Logo Sample 1"></a>
+      <a href="images/logo2.jpeg" class="glightbox"><img src="images/logo2.jpeg" alt="Logo Sample 2"></a>
+      <a href="images/logo3.jpeg" class="glightbox"><img src="images/logo3.jpeg" alt="Logo Sample 3"></a>
+      <a href="images/logo4.jpeg" class="glightbox"><img src="images/logo4.jpeg" alt="Logo Sample 4"></a>
+      <a href="images/logo5.jpeg" class="glightbox"><img src="images/logo5.jpeg" alt="Logo Sample 5"></a>
+      <a href="images/logo6.jpeg" class="glightbox"><img src="images/logo6.jpeg" alt="Logo Sample 6"></a>
+      <a href="images/logo7.jpeg" class="glightbox"><img src="images/logo7.jpeg" alt="Logo Sample 7"></a>
+      <a href="images/logo8.jpeg" class="glightbox"><img src="images/logo8.jpeg" alt="Logo Sample 8"></a>
+    </div>
+  </section>
+  <section id="contact">
+    <h2>Contact</h2>
+    <form class="contact-form" action="mailto:ctrlaltdesign.studio@gmail.com" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+  <footer>
+    &copy; 2025 CtrlAltDesign Studio. All rights reserved.
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script>
+    const lightbox = GLightbox({ selector: '.glightbox' });
+  </script>
+</body>
+</html>
